@@ -1,0 +1,30 @@
+.navbar-default {
+	background-color: transparent;
+    border-color: transparent;
+    padding: 15px;
+}
+.btn-cadastrar {
+    background-color: #37bc9b !important;
+    border-color: #37bc9b !important;
+}
+.btn-cadastrar:focus,
+.btn-cadastrar:hover {
+    background-color: #48CFAD !important;
+    border-color: #48CFAD !important;
+}
+.btn-entrar {
+    background-color: #F47D30 !important;
+    border-color: #F47D30 !important;
+}
+.btn-entrar:focus,
+.btn-entrar:hover {
+    background-color: #f98b45 !important;
+    border-color: #f98b45 !important;
+}
+.lnk-sair {
+	color: #37bc9b !important;
+}
+.lnk-sair:focus > i,
+.lnk-sair:hover > i {
+    color: #48CFAD !important;
+}

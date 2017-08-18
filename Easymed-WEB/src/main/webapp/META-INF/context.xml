@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context reloadable="true" >
+		 <ResourceLink name="jdbc/easymed"
+	 				global="jdbc/easymed"
+	 				auth="Container"
+	 				type="javax.sql.DataSource" />
+</Context>
