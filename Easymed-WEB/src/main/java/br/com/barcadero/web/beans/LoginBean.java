@@ -2,14 +2,13 @@ package br.com.barcadero.web.beans;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.barcadero.commons.security.HandleEncrypt;
 import br.com.barcadero.easymed.core.tables.Usuario;
-import br.com.barcadero.web.security.AuthenticationService;
-import br.com.barcadero.web.util.MessagesBeanUtil;
+import br.com.barcadero.web.util.Attributs;
+
 
 
 
@@ -21,40 +20,17 @@ public class LoginBean {
 	}
 
 	private String focusProperty = "";
-
-	@ManagedProperty(value = "#{authenticationService}")
-	private AuthenticationService authenticationService;
-
+	private SessionContext session;
 	private String usuario;
 	private String senha;
 
-	public String getUserName() {
-		return getUsuarioLogado().getNome();
-	}
-
-	public boolean isLogado() {
-		String userName = getUsuarioLogado().getUsername();
-		if(userName!=null && !userName.isEmpty()){
-			return true;
-		}else{
-			return false;
-		}
-	}
-
-	//public void setLogado(boolean isLogado) {
-	//	LoginBean.isLogado = isLogado;
-	//}
+	
 
 	public String login() {
 		System.out.println("entrou login");
 		String validate = validate();
 		if(validate.trim().isEmpty()){
-			boolean success = authenticationService.login(usuario, senha);
-
-			if (!success) {
-				MessagesBeanUtil.erroMessage("Falha no login!", "Usuário ou senha inválidos! Ou o usuário pode não ter sido validado pelo E-mail");
-				return "";
-			}
+			//TODO por a regra de login aqui
 			return "sucessoLogin";
 		}else{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no login!", validate));
@@ -74,22 +50,8 @@ public class LoginBean {
 	}
 
 	public String logout() {
-		authenticationService.logout();
+		
 		return "logout";
-	}
-
-	public Usuario getUsuarioLogado(){
-		Usuario user = authenticationService.getUsuarioLogado();
-		if(user!=null){
-			return user;
-		}else{
-			return new Usuario();
-		}
-	}
-
-
-	public void setAuthenticationService(AuthenticationService authenticationService) {
-		this.authenticationService = authenticationService;
 	}
 
 	public String getUsuario() {
@@ -121,5 +83,20 @@ public class LoginBean {
 	}
 
 
+	protected void autorizarLogin(Usuario usuario) {
+		getSession().setAttribute("autorizado", true);
+		getSession().setAttribute(Attributs.USER_NOME,   usuario.getNome());
+		getSession().setAttribute(Attributs.USER_LOGIN,  usuario.getLogin());
+		getSession().setAttribute(Attributs.USER_CODIGO, usuario.getCodigo());
+		getSession().setAttribute(Attributs.USER, usuario);
+	}
+
+	public SessionContext getSession() {
+		return session;
+	}
+
+	public void setSession(SessionContext session) {
+		this.session = session;
+	}
 
 }

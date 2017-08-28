@@ -16,12 +16,12 @@ import br.com.barcadero.web.rest.CallUsuarioRest;
 
 
 @Component("userDetailsService")
-public class UserDetailsServiceImpl implements UserDetailsService {//,AuthenticationManager {
+public class UserDetailsServiceImpl  {//,AuthenticationManager {
 
 	public UserDetailsServiceImpl() {
 		
 	}
-	public UserDetails loadUserByUsername(String nmLogin) throws UsernameNotFoundException {
+	public Usuario loadUserByUsername(String nmLogin) throws UsernameNotFoundException {
 		try {
 			return getUserByREST(nmLogin);
 		} catch (ExceptionErroCallRest | ExceptionValidation e) {

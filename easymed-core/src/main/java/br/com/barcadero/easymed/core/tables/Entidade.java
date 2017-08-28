@@ -29,8 +29,8 @@ public abstract class Entidade implements Serializable {
 	
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name=IDUtil.ID, nullable=false)
-	private long id;
+	@Column(name=IDUtil.CODIGO, nullable=false)
+	private long codigo;
 	@Column(name="DT_CADATRO",nullable=false)
 	@Temporal(TemporalType.DATE)
 	private Date dtCadastro = new Date();
@@ -38,12 +38,6 @@ public abstract class Entidade implements Serializable {
 	@Temporal(TemporalType.TIME)
 	private Date hrCadastro = new Date();
 
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
 	public Date getDtCadastro() {
 		return dtCadastro;
 	}
@@ -56,11 +50,17 @@ public abstract class Entidade implements Serializable {
 	public void setHrCadastro(Date hrCadastro) {
 		this.hrCadastro = hrCadastro;
 	}
+	public long getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + (int) (codigo ^ (codigo >>> 32));
 		return result;
 	}
 	@Override
@@ -72,9 +72,10 @@ public abstract class Entidade implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Entidade other = (Entidade) obj;
-		if (id != other.id)
+		if (codigo != other.codigo)
 			return false;
 		return true;
 	}
+	
 	
 }

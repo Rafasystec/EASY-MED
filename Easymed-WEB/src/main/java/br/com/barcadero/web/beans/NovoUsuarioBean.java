@@ -32,8 +32,8 @@ public class NovoUsuarioBean {
 		try {
 			String validate = validate();
 			if(validate.trim().isEmpty()){
-				usuario.setNmLogin(usuario.getEmail());
-				usuario.setPassword(HandleEncrypt.toMD5(getSenha()));
+				usuario.setNome(usuario.getEmail());
+				usuario.setSenha(HandleEncrypt.toMD5(getSenha()));
 				usuario = RestUtilCall.postEntity(usuario, "usuario/precadastro",Usuario.class);
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "OK:","Usuário Cadastrado com sucesso!"));
 				return null;
