@@ -20,11 +20,11 @@ public class Convenio extends Entidade {
 	@Enumerated(EnumType.STRING)
 	private EnumTpConvenio tpConvenio;
 	@Column(name="NR_MAX_CONS_MES",nullable=false)
-	@Enumerated(EnumType.STRING)
 	private int maxConsultasMes = 0;
 	@Column(name="TP_PRECO",nullable=false)
 	@Enumerated(EnumType.STRING)
 	private EnumTpPreco tpPreco;
+	
 	public String getConvenio() {
 		return convenio;
 	}

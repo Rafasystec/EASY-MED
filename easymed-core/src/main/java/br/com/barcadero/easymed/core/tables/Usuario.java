@@ -15,25 +15,14 @@ import br.com.barcadero.easymed.core.enums.EnumUF;
 
 
 /**
- * 
+ * Classe para representar o usuario na tabela
  * @author Rafael Rocha
- * @since Gsind 1.0 beta dia 25/10/2013 as 21:12
-
-@NamedQueries(
-		{
-			@NamedQuery(name=Usuario.FIND_ALL		,query="FROM Usuario"),
-			@NamedQuery(name=Usuario.FIND_BY_CODE	,query="FROM Usuario u WHERE u.codigo = :codigo"),
-			@NamedQuery(name=Usuario.FIND_BY_LOGIN	,query="FROM Usuario u WHERE u.email = :email AND u.passWord = :senha"),
-			@NamedQuery(name=Usuario.FIND_BY		,query="FROM Usuario u WHERE  u.nome LIKE :nome OR u.email LIKE :email "),
-			@NamedQuery(name=Usuario.FIND_BY_EMAIL	,query="FROM Usuario u WHERE u.email = :email")
-		}
-)
-
+ *
  */
 
 
 @NamedQueries({ 
-	@NamedQuery(name = Usuario.FIND_POR_NOME_LOGIN, query = "FROM Usuario usu WHERE usu.nmLogin = :nmLogin") 
+	@NamedQuery(name = Usuario.FIND_POR_NOME_LOGIN, query = "FROM Usuario WHERE login = :login AND senha = :senha ") 
 })
 
 @Entity
@@ -48,9 +37,7 @@ public class Usuario extends Entidade
 
 	}
 	public static final String FIND_POR_NOME_LOGIN 	= "Usuario.porNomeLogin";
-	public static final String FIND_POR_NM_ANIMAL 	= "Usuario.porNMouAnimal";
-	public static final String IDX_POR_FACEBOOK 	= "UsuarioFacebook"; 
-
+	
 	@Column(name="FOTO_PERFIL" , length=10485760)
 	private String foto = "";
 	@Column(name="NM_USU",length=30)

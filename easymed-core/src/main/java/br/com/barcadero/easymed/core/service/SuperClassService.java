@@ -1,5 +1,9 @@
 package br.com.barcadero.easymed.core.service;
 
+import org.springframework.transaction.annotation.Transactional;
+
+import br.com.barcadero.easymed.core.tables.Entidade;
+
 /*
  * --------------------------------------------------------------------------
  * Spring recommends that you only annotate concrete classes (and methods of concrete classes) 
@@ -25,8 +29,8 @@ package br.com.barcadero.easymed.core.service;
  * @author Rafel Rocha
  * @since version 1.0 Beta
  */
-
-public abstract class SuperClassService<T> implements IService<T>{
+@Transactional
+public abstract class SuperClassService<T extends Entidade> implements IService<T>{
 
 	public SuperClassService() {
 	

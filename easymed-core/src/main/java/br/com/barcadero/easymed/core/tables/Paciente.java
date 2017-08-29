@@ -26,15 +26,15 @@ public class Paciente extends Entidade {
 	 * 
 	 */
 	private static final long serialVersionUID = 5014920796244100307L;
-	@Column(name="NM_PAC",nullable=false,length=0)
+	@Column(name="NM_PAC",nullable=false,length=80)
 	private String nome = "";
-	@Column(name="NR_PAC_SEX",nullable=false,length=0)
+	@Column(name="NR_PAC_SEX",nullable=false)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumSexo sexo = EnumSexo.MASCULINO;
-	@Column(name="TP_PAC_EST_CIV",nullable=false,length=0)
+	@Column(name="TP_PAC_EST_CIV",nullable=false)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumEstadoCivil estadoCivil = EnumEstadoCivil.CASADO;
-	@Column(name="DT_PAC_NAS",nullable=false,length=0) 
+	@Column(name="DT_PAC_NAS",nullable=false) 
 	private Date dtNascimento = new Date();
 	@Column(name="DS_PAC_MAT",nullable=false,length=25)
 	private String matricula = "";
@@ -57,7 +57,7 @@ public class Paciente extends Entidade {
 	@Column(name="DS_PAC_COR",nullable=false,length=20)
 	@Enumerated(EnumType.STRING)
 	private EnumRaca raca = EnumRaca.BRANCA;
-	@Column(name="DS_PAC_PRO",nullable=false,length=0)
+	@Column(name="DS_PAC_PRO",nullable=false,length=80)
 	private String profissao = "";
 	@Column(name="DT_PAC_PRI_CON",nullable=false)
 	@Temporal(TemporalType.DATE)

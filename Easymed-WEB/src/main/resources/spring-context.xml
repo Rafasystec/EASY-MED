@@ -34,12 +34,11 @@
 	</bean>
 
 
-	<tx:annotation-driven />
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 	<!-- Define o pacote base para o escaneamento das anotações de contexto 
 		(@Component, @Repository, @Service, @Controller, etc) -->
 	<context:component-scan base-package="br.com.barcadero.easymed.core.dao" />
 	<context:component-scan base-package="br.com.barcadero.easymed.core.service" />
-	<context:component-scan base-package="br.com.barcadero.web.security" />
 	<context:annotation-config />
 
 </beans>

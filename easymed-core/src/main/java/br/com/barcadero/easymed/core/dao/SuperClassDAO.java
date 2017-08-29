@@ -16,7 +16,7 @@ import br.com.barcadero.easymed.core.tables.Entidade;
  * 
  */
 
-public  abstract class SuperClassDAO<T extends Entidade>  {
+public  abstract class SuperClassDAO<T extends Entidade>  implements IDao<T>{
 	
 	
 	
