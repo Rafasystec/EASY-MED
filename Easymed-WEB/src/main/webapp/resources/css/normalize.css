@@ -420,5 +420,10 @@ table {
 
 td,
 th {
-  padding: 0;
+  padding: 5;
+}
+
+.noBorder tr, .noBorder td {
+	border: none !important;
+	background-color: transparent;
 }

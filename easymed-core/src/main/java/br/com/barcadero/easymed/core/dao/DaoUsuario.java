@@ -1,5 +1,7 @@
 package br.com.barcadero.easymed.core.dao;
 
+import java.util.List;
+
 import javax.persistence.NoResultException;
 
 import org.springframework.stereotype.Repository;
@@ -19,7 +21,7 @@ public class DaoUsuario extends SuperClassDAO<Usuario> {
 	}
 
 	@Override
-	public Usuario findAll() throws NoResultException {
+	public List<Usuario> findAll() throws NoResultException {
 		// TODO Auto-generated method stub
 		return null;
 	}

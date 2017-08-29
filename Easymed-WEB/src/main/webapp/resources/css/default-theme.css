@@ -4,7 +4,7 @@ body {
 }
 legend {	
 	border-color: #ccc !important;
-	color: #33333 !important;
+	color: #F47D30 !important;
 }
 #lightbox .ui-spinner i {	
     color: #F47D30 !important;
@@ -22,7 +22,7 @@ legend {
 	border-color: #cccccc !important;
 }
 .ui-inputfield.ui-state-focus, .ui-widget-content .ui-inputfield.ui-state-focus, .ui-widget-header .ui-inputfield.ui-state-focus {
-   	border-color: #37bc9b;
+   	border-color: #0040FF;
    	box-shadow: none;
 }
 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {

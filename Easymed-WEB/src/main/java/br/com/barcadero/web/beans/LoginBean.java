@@ -1,5 +1,6 @@
 package br.com.barcadero.web.beans;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -20,15 +21,23 @@ import br.com.barcadero.web.util.MessagesBeanUtil;
 public class LoginBean {
 	public LoginBean (){
 		super();
+		this.session = SessionContext.getInstance();
 	}
 
 	private String focusProperty = "";
 	private SessionContext session;
 	private String usuario;
 	private String senha;
-
+	private Usuario objUsuario;
+	
 	@ManagedProperty(value="#{serviceUsuario}")
 	private ServiceUsuario serviceUsuario;
+	
+	@PostConstruct
+	public void init() {
+		
+	}
+	
 	
 	public String login() {
 		System.out.println("entrou login");
@@ -38,11 +47,12 @@ public class LoginBean {
 			try {
 				usuario = serviceUsuario.findUsuarioByLoginSenha(getUsuario(), getSenha());
 				if(usuario != null && usuario.getCodigo() > 0){
+					setObjUsuario(usuario);
 					autorizarLogin(usuario);
 					return "sucessoLogin";
 				}
 			} catch (Exception e) {
-				
+				e.printStackTrace();
 			}
 			
 			MessagesBeanUtil.erroMessage("Usuário ou senha inválido! Por favor tente novamente");
@@ -147,6 +157,16 @@ public class LoginBean {
 
 	public void setServiceUsuario(ServiceUsuario serviceUsuario) {
 		this.serviceUsuario = serviceUsuario;
+	}
+
+
+	public Usuario getObjUsuario() {
+		return objUsuario;
+	}
+
+
+	public void setObjUsuario(Usuario objUsuario) {
+		this.objUsuario = objUsuario;
 	}
 
 }

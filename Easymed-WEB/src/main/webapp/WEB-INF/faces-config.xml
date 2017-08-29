@@ -35,13 +35,28 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>cad-adocao</from-outcome>
-			<to-view-id>/admin/adocao-cadastro.xhtml</to-view-id>
+			<from-outcome>procedimentos</from-outcome>
+			<to-view-id>/private/page-procedimentos.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>vacinas</from-outcome>
-			<to-view-id>/admin/vacinacao.xhtml</to-view-id>
+			<from-outcome>retornos</from-outcome>
+			<to-view-id>/private/page-retornos.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>pacientes</from-outcome>
+			<to-view-id>/private/page-pacientes.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>financeiro</from-outcome>
+			<to-view-id>/private/page-financeiro.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>convenios</from-outcome>
+			<to-view-id>/private/page-convenios.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -50,8 +65,8 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>perfil-adocao</from-outcome>
-			<to-view-id>/private/PagPerfilAdocao.xhtml</to-view-id>
+			<from-outcome>usuarios</from-outcome>
+			<to-view-id>/private/page-usuarios.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

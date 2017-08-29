@@ -4,12 +4,12 @@
     padding: 15px;
 }
 .btn-cadastrar {
-    background-color: #37bc9b !important;
-    border-color: #37bc9b !important;
+    background-color: #0080c0!important;
+    border-color: #0080c0!important;
 }
 .btn-cadastrar:focus,
 .btn-cadastrar:hover {
-    background-color: #48CFAD !important;
+    background-color: #5858FA !important;
     border-color: #48CFAD !important;
 }
 .btn-entrar {

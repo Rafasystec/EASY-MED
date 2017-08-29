@@ -20,8 +20,13 @@ import br.com.barcadero.easymed.core.enums.EnumUF;
 
 @Entity
 @Table(name="T_PAC")
-public class Paciente extends Entidade {
+public class Paciente extends EntidadeComUsuario {
 	
+	public Paciente() {
+	}
+	public Paciente(Usuario usuario) {
+		setUsuario(usuario);
+	}
 	/**
 	 * 
 	 */

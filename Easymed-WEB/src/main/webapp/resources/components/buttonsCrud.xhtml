@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+	<composite:interface>
+	
+		<composite:attribute name="bean"
+			shortDescription="Bean para ser passado" type="br.com.barcadero.web.beans.IBeanClass"  displayName="Passar o componente bean" />
+		<composite:attribute name="id"
+			shortDescription="ID para o componente" default="id" />
+		<composite:attribute name="renderEncluir" type="java.lang.Boolean"
+			shortDescription="ID para o componente" default="true" />
+	</composite:interface>
+	<composite:implementation>
+	
+	<p:commandButton id="#{cc.attrs.id}-limpar" style="margin-right:4px"
+			styleClass="btn btn-primary btn-lg" icon="fa fa-refresh"
+			title="Limpar a Tela?" value="Limpar" action="#{cc.attrs.bean.novo}"
+			type="submit" ajax="false" />
+
+		<p:commandButton id="#{cc.attrs.id}-salvar" style="margin-right:4px"
+			styleClass="btn btn-info btn-lg" icon="fa fa-floppy-o"
+			title="Salvar?" value="Salvar"
+			action="#{cc.attrs.bean.salvar}" type="submit" ajax="false"
+			onstart="paceStart();" onclick="paceStart();"
+			oncomplete="Pace.restart();" update="@form" />
+
+		<p:commandButton id="btnExcluir" styleClass="btn btn-danger btn-lg" rendered="#{cc.attrs.renderEncluir}"
+			icon="fa fa-trash-o" title="Deseja excluir?" value="Excluir"
+			action="#{cc.attrs.bean.deletar}" ajax="true"
+			update="grid,@form">
+			<p:confirm header="Confirme a exclusão"
+				message="Você tem certeza que deseja excluir este registro?"
+				icon="fa fa-exclamation-triangle" />
+		</p:commandButton>
+	
+	</composite:implementation>
+</ui:composition>
+
+
+
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:clx="http://java.sun.com/jsf/composite/components"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	 template="#{pageHelperBean.mainTemplate}">
+
+	<ui:param name="activeAnuncio" value="active" />
+	<ui:param name="pageIcon" value="bullhorn" />
+	<ui:param name="pageTitle" value="PACIENTES" />
+
+	<ui:define name="header">
+
+	</ui:define>
+
+	<ui:define name="body">
+
+			<div class="ui-grid ui-grid-responsive">	   		
+	   			<div class="ui-grid-row ui-grid-row-custom">
+					<div class="ui-grid-col-12">									
+					
+					<p:tabView>
+						<!-- Tab para os lancamentos de despesas -->
+						<ui:remove>
+						<p:ajax event="tabChange" listener="#{beanContaLancamentos.onTabChange}"/>
+						</ui:remove>
+						<p:tab id="tabDadosGerais" title="DADOS GERAIS" closable="false" titletip="DADOS DO PACIENTE">
+							<ui:include src="content-tab-paciente-dadosgerais.xhtml" />
+						</p:tab>
+						<p:tab id="tabHistorico" title="HISTÓRICO" closable="false" titletip="HISTÓRICO DO PACIENTE">
+							<ui:include src="content-tab-paciente-historico.xhtml" />
+						</p:tab>
+						
+						<p:tab id="tabObs" title="OBSERVAÇÕES" closable="false" titletip="OBSERVAÇÕES DO PACIENTE">
+							<ui:include src="content-tab-paciente-observacoes.xhtml" />
+						</p:tab>
+						
+						<p:tab id="tabObs" title="PESQUISAS" closable="false" titletip="OBSERVAÇÕES DO PACIENTE">
+							<ui:include src="content-tab-paciente-pesquisa.xhtml" />
+						</p:tab>
+						
+					</p:tabView>
+					
+					</div>
+				</div>
+			</div>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

@@ -46,7 +46,7 @@ public class Usuario extends Entidade
 	private String login;
 	@Column(name="DS_USU_CRM",length=8)
 	private String crm;
-	@Column(name="DS_USU_SEN",length=25)
+	@Column(name="DS_USU_SEN",length=50)
 	private String senha;
 	@Column(name="DS_USU_END",length=25)
 	private String endereco;

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:clx="http://java.sun.com/jsf/composite/components">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="#{pageHelperBean.mainTemplate}">
+
+	<ui:param name="activeAnuncio" value="active" />
+	<ui:param name="pageIcon" value="pencil-square-o" />
+	<ui:param name="pageTitle" value="CONVÊNIOS" />
+
+	<ui:define name="header">
+		<clx:buttonsCrud id="btnsUp" bean="#{beanConvenio}" renderEncluir="false" />
+	</ui:define>
+
+	<ui:define name="body">
+
+		<p:confirmDialog id="dlgConfirm" global="true" showEffect="fade"
+			severity="alert" widgetVar="deleteConfirmDlg" hideEffect="fade"
+			appendToBody="true" ajax="false">
+			<p:commandButton value="Sim" type="button"
+				styleClass="ui-confirmdialog-yes btn btn-info btn-lg"
+				icon="ui-icon-check" />
+			<p:commandButton value="Não" type="button"
+				styleClass="ui-confirmdialog-no btn btn-danger btn-lg"
+				icon="ui-icon-close" />
+		</p:confirmDialog>
+
+		<div class="ui-grid ui-grid-responsive">
+			<div class="ui-grid-row ui-grid-row-custom">
+				<div class="ui-grid-col-12">
+					<div class="ui-grid-row ui-grid-row-custom">
+						<div class="ui-grid-col-6" style="padding-right: 5px;">
+							<div class="ui-grid-row">
+								<div class="ui-grid-col-12">
+									<div class="ui-grid-row ui-grid-row-custom">
+										<div class="ui-grid-col-12">
+											
+											<p:panelGrid columns="4" styleClass="noBorder">
+												<p:outputLabel value="Convênio" />
+												<p:inputText value="#{beanConvenio.convenio.convenio}" id="txtConvenio"/>
+												<p:outputLabel value="Tipo preço" />
+												<p:selectOneMenu value="#{beanConvenio.convenio.tpPreco}" id="cboTpPreco">
+													<f:selectItems value="#{beanConvenio.tipoPreco}" />
+												</p:selectOneMenu>
+											</p:panelGrid>
+												
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- grid -->
+			<div class="ui-grid-row ui-grid-row-custom">
+				<div class="ui-grid-col-12">
+					<p:dataTable id="grid" var="conv"
+						emptyMessage="Nenhum Convênio cadastrado." scrollHeight="157"
+						scrollable="true" resizableColumns="true"
+						value="#{beanConvenio.convenios}"
+						paginator="#{beanConvenio.convenios.size() > 10}" rows="13"
+						paginatorPosition="bottom" tabindex="-1">
+
+						<f:facet name="header">
+							<p:outputLabel value="Convênio" />
+						</f:facet>
+
+						<p:column headerText="Convênio" width="250">
+							<h:outputText value="#{conv.convenio}" />
+						</p:column>
+
+						<p:column headerText="Tipo de Preço" width="100">
+							<h:outputText value="#{conv.tpPreco}" />
+						</p:column>
+
+						<p:column headerText="Ativo" style="width:10%;text-align: center;">
+							<p:graphicImage rendered="#{conv.flAtivo}">
+								<i class="fa fa-check-circle fa-2x fa-color-green" />
+							</p:graphicImage>
+							<p:graphicImage rendered="#{not conv.flAtivo}">
+								<i class="fa fa-times fa-2x fa-color-red" />
+							</p:graphicImage>
+						</p:column>
+						<p:column style="width:15%;text-align: center;">
+
+							<p:commandButton
+								actionListener="#{beanConvenio.ativar(conv,true)}"
+								type="submit" value="Ativar" id="btnAtivar"
+								styleClass="btn btn-primary" rendered="#{not conv.flAtivo}"
+								title="Ativar esse serviço" ajax="true" process="@this"
+								update="grid" />
+							<p:commandButton
+								actionListener="#{beanConvenio.ativar(conv,false)}"
+								type="submit" value="Desativar" id="btInativar"
+								styleClass="btn btn-danger" title="Desativar convênio"
+								rendered="#{conv.flAtivo}" ajax="true" process="@this"
+								update="grid">
+								<p:confirm header="Desativar"
+									message="Você tem certeza que desativar esse convênio?"
+									icon="fa fa-exclamation-triangle" />
+							</p:commandButton>
+						</p:column>
+
+						<p:column headerText="Opções" style="text-align:center;width:20%">
+							<p:commandButton
+								actionListener="#{beanConvenio.selecionar(conv)}" type="submit"
+								styleClass="btn btn-info btn-lg" icon="fa fa-pencil-square-o"
+								title="Clique aqui para alterar alguma informação" ajax="true"
+								process="@this" update="@form">
+								<f:ajax render="@form" />
+							</p:commandButton>
+							<p:commandButton action="#{beanConvenio.deletar(conv)}"
+								type="submit" styleClass="btn btn-danger btn-lg"
+								icon="fa fa-trash-o" title="Excluir o registro na grid"
+								ajax="true" process="@this" update="grid">
+								<f:ajax execute="@all" render="@form" />
+								<p:confirm header="Confirme a exclusão"
+									message="Você tem certeza que deseja excluir este registro?"
+									icon="fa fa-exclamation-triangle" />
+							</p:commandButton>
+						</p:column>
+
+
+					</p:dataTable>
+				</div>
+			</div>
+
+		</div>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

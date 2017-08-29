@@ -37,13 +37,7 @@
 			   
 			<br />    
 			<!-- Só vai ficar aqui por enquanto -->
-			    <ui:remove>
-		            <p:inputText style="margin-right:20px" placeholder="Usuario" value="#{loginBean.usuario}"/>
-		            <p:password style="margin-right:10px" placeholder="Senha" value="#{loginBean.senha}"/>
-		            
-		             <h:commandButton id="btnLogar" action="#{loginBean.login}" styleClass="btn btn-primary" value="Logar" update="growlMessage" />
-		             <h:commandButton id="btnNovoUsuario" action="solicita-novo-usuario" styleClass="btn btn-info" value="Quero me cadastrar"  />
-	            </ui:remove> 
+			    
 	             
 	             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
       		    
@@ -65,10 +59,10 @@
 							  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 							    	<li>
 							    		<p:link onclick="paceStart();" id="lnk-edit-user" title="Clique aqui para editar os dados do Usuário"
-							    		outcome="usuario"
+							    		outcome="usuarios"
 							    		>
 				                			<i class="fa fa-user" aria-hidden="true"></i>
-							    			#{loginBean.userName}
+							    			#{loginBean.objUsuario.nome}
 				                		</p:link>
 				                		<pe:tooltip for="lnk-edit-user"/>
 							    	</li>							    							    	

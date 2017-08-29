@@ -31,10 +31,10 @@ public abstract class Entidade implements Serializable {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name=IDUtil.CODIGO, nullable=false)
 	private long codigo;
-	@Column(name="DT_CADATRO",nullable=false)
+	@Column(name="DT_CADASTRO",nullable=false)
 	@Temporal(TemporalType.DATE)
 	private Date dtCadastro = new Date();
-	@Column(name="HR_CADATRO", nullable=false)
+	@Column(name="HR_CADASTRO", nullable=false)
 	@Temporal(TemporalType.TIME)
 	private Date hrCadastro = new Date();
 

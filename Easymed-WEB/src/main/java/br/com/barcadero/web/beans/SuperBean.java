@@ -1,19 +1,15 @@
 package br.com.barcadero.web.beans;
 
 import java.io.Serializable;
-import java.net.UnknownHostException;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import org.hibernate.Session;
-
 import br.com.barcadero.easymed.core.tables.Clinica;
 import br.com.barcadero.easymed.core.tables.Entidade;
 import br.com.barcadero.easymed.core.tables.Usuario;
 import br.com.barcadero.web.util.Attributs;
+import br.com.barcadero.web.util.MessagesBeanUtil;
 
 
 public abstract class SuperBean<T extends Entidade>  implements Serializable, IBeanClass<T>{
@@ -51,19 +47,19 @@ public abstract class SuperBean<T extends Entidade>  implements Serializable, IB
 	}
 	
 	protected void exibirErroGrave(Exception e) {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,null,"Erro ao tentar logar: " + e.getMessage()));
+		MessagesBeanUtil.exception(e);
 	}
 	
 	protected void exibirErroGrave(String msgErro) {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,null,msgErro));
+		MessagesBeanUtil.erroMessage(msgErro);
 	}
 	
 	protected void exibirMensagem(String mensagem) {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,null,mensagem));
+		MessagesBeanUtil.infor(mensagem);
 	}
 	
 	protected void exibirMsgAlerta(String msgAlert) {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,null,msgAlert));
+		MessagesBeanUtil.alert(msgAlert);
 	}
 	
 	protected Clinica getClinicaLogada() {
