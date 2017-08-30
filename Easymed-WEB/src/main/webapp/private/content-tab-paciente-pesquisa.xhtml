@@ -5,24 +5,22 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 <ui:composition >
 
-	<h:panelGroup id="pngVisualPesq">
-				<div class="ui-upload-img" style="height: 215px;">
-					<h:graphicImage width="100%"
-						style="width:50%;height:50%;display:#{empty beanPaciente.selectedPaciente.foto ? 'inline-block' : 'none'}"
-						stream="false" cache="false"
-						url="data:image/jpg;base64,#{beanPaciente.paciente.foto}"
-						id="visualizacaoPesq" alt="Visualização da foto" />
-					<span
-						style="font-size: 58px; display: #{not empty beanPaciente.selectedPaciente.foto? 'none': 'inline-block'}"
-						class="fa-stack fa-lg"> <i class="fa fa-camera fa-stack-1x"></i>
-						<i class="fa fa-ban fa-stack-2x text-danger"></i>
-					</span>
-				</div>
-			</h:panelGroup>
+	<p:panelGrid columns="1" style="height: 200px; width: 200px" styleClass="noBorder">
+		<h:panelGroup id="pngVisualPesq">
+			<div style="height: 150px; width: 150px">
+				<h:graphicImage width="100%" height="100%"
+					style="width:100%;height:100%;display:#{empty beanPaciente.selectedPaciente.foto ? 'inline-block' : 'none'}"
+					stream="false" cache="false"
+					url="data:image/jpg;base64,#{beanPaciente.paciente.foto}"
+					id="visualizacaoPesq" alt="Visualização da foto" />
 
-	
+			</div>
+		</h:panelGroup>
+		<p:outputLabel value="#{beanPaciente.paciente.nome}" />
+	</p:panelGrid>
 
-		<!-- grid -->
+
+	<!-- grid -->
 			<div class="ui-grid-row ui-grid-row-custom">
 				<div class="ui-grid-col-12">
 					<p:dataTable id="grid" var="paciente" 

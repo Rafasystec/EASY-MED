@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:clx="http://java.sun.com/jsf/composite/components"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	 template="#{pageHelperBean.mainTemplate}">
+
+	<ui:param name="activeAnuncio" value="active" />
+	<ui:param name="pageIcon" value="cogs" />
+	<ui:param name="pageTitle" value="PROCEDIMENTOS" />
+
+	<ui:define name="header">
+
+	</ui:define>
+
+	<ui:define name="body">
+
+			<div class="ui-grid ui-grid-responsive">	   		
+	   			<div class="ui-grid-row ui-grid-row-custom">
+					<div class="ui-grid-col-12">									
+						<div class="ui-grid-row ui-grid-row-custom">
+							<div class="ui-grid-col-6" style="padding-right:5px;">				  				
+					           	<div class="ui-grid-row">
+					  				<div class="ui-grid-col-12">					  				
+										<div class="ui-grid-row ui-grid-row-custom">
+											<div class="ui-grid-col-12">
+											
+											<p:panel header="EM DESENVOLVIMENTO">
+												EM DESENVOLVIMENTO
+												<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+												<span class="sr-only">Loading...</span>
+											</p:panel>							
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

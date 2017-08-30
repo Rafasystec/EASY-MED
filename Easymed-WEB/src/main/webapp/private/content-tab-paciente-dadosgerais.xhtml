@@ -70,15 +70,15 @@
 		<p:panelGrid columns="4" styleClass="noBorder">
 		
 			<p:outputLabel value="Tel. Residencial" for="txtResidencial" />
-			<p:inputText value="#{beanPaciente.paciente.telefone}"
+			<p:inputMask mask="(99)9999-9999" value="#{beanPaciente.paciente.telefone}"
 				maxlength="15" id="txtResidencial" />
 				
 				<p:outputLabel value="Tel. Comercial" for="txtComercial" />
-			<p:inputText value="#{beanPaciente.paciente.telComercial}"
+			<p:inputMask mask="(99)9999-9999"  value="#{beanPaciente.paciente.telComercial}"
 				maxlength="15" id="txtComercial" />
 				
 			<p:outputLabel value="Celular:" for="txtCelular" />
-			<p:inputText value="#{beanPaciente.paciente.celular}" required="#{beanPaciente.requiredDadosGerais}"
+			<p:inputMask  mask="(99)99999-9999" value="#{beanPaciente.paciente.celular}" required="#{beanPaciente.requiredDadosGerais}"
 				maxlength="15" id="txtCelular" />
 				
 			<p:outputLabel value="E-mail" for="txtEmail" />
@@ -116,7 +116,7 @@
 				maxlength="40" id="txtCidade" />
 				
 		<p:outputLabel value="CEP:" for="txtCep" />
-			<p:inputText value="#{beanPaciente.paciente.cep}"
+			<p:inputMask mask="99999-999" value="#{beanPaciente.paciente.cep}"
 				maxlength="10" id="txtCep" />	
 		
 		<p:outputLabel value="UF:" for="cboUf" />
