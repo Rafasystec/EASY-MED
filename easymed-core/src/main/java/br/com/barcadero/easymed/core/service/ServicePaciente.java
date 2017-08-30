@@ -1,11 +1,14 @@
 package br.com.barcadero.easymed.core.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.barcadero.easymed.core.dao.DaoPaciente;
 import br.com.barcadero.easymed.core.exceptions.ExceptionValidation;
 import br.com.barcadero.easymed.core.tables.Paciente;
+import br.com.barcadero.easymed.core.tables.Usuario;
 @Service
 public class ServicePaciente extends SuperClassService<Paciente> {
 
@@ -17,26 +20,23 @@ public class ServicePaciente extends SuperClassService<Paciente> {
 	
 	@Override
 	public Paciente insert(Paciente entidade) throws ExceptionValidation {
-		// TODO Auto-generated method stub
-		return null;
+		return daoPaciente.insert(entidade);
 	}
 
 	@Override
 	public void delete(Paciente entidade) throws ExceptionValidation {
-		// TODO Auto-generated method stub
+		daoPaciente.delete(entidade);
 		
 	}
 
 	@Override
-	public Paciente update(Paciente entidade) throws ExceptionValidation {
-		// TODO Auto-generated method stub
-		return null;
+	public Paciente update(Paciente paciente) throws ExceptionValidation {
+		return daoPaciente.update(paciente);
 	}
 
 	@Override
 	public Paciente find(long codigo) throws ExceptionValidation {
-		// TODO Auto-generated method stub
-		return null;
+		return daoPaciente.find(codigo, Paciente.class);
 	}
 
 	public DaoPaciente getDaoPaciente() {
@@ -46,5 +46,8 @@ public class ServicePaciente extends SuperClassService<Paciente> {
 	public void setDaoPaciente(DaoPaciente daoPaciente) {
 		this.daoPaciente = daoPaciente;
 	}
-
+	
+	public List<Paciente> findAll(Usuario usuario) {
+		return daoPaciente.findAll(usuario);
+	}
 }

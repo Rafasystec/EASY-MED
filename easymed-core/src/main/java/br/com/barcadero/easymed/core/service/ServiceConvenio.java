@@ -35,8 +35,7 @@ public class ServiceConvenio extends SuperClassService<Convenio>{
 
 	@Override
 	public Convenio find(long codigo) throws ExceptionValidation {
-		// TODO Auto-generated method stub
-		return null;
+		return daoConvenio.find(codigo, Convenio.class);
 	}
 	
 	public List<Convenio> findAll(Usuario usuario) throws NoResultException {

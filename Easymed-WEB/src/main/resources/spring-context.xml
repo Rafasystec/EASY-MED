@@ -39,6 +39,7 @@
 		(@Component, @Repository, @Service, @Controller, etc) -->
 	<context:component-scan base-package="br.com.barcadero.easymed.core.dao" />
 	<context:component-scan base-package="br.com.barcadero.easymed.core.service" />
+	<context:component-scan base-package="br.com.barcadero.easymed.web.converters" />
 	<context:annotation-config />
 
 </beans>

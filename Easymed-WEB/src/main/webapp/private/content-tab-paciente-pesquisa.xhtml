@@ -4,18 +4,100 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html">
 <ui:composition >
-	<!-- Page Content -->
-	<div class="container">
 
-		
+	<h:panelGroup id="pngVisualPesq">
+				<div class="ui-upload-img" style="height: 215px;">
+					<h:graphicImage width="100%"
+						style="width:50%;height:50%;display:#{empty beanPaciente.selectedPaciente.foto ? 'inline-block' : 'none'}"
+						stream="false" cache="false"
+						url="data:image/jpg;base64,#{beanPaciente.paciente.foto}"
+						id="visualizacaoPesq" alt="Visualização da foto" />
+					<span
+						style="font-size: 58px; display: #{not empty beanPaciente.selectedPaciente.foto? 'none': 'inline-block'}"
+						class="fa-stack fa-lg"> <i class="fa fa-camera fa-stack-1x"></i>
+						<i class="fa fa-ban fa-stack-2x text-danger"></i>
+					</span>
+				</div>
+			</h:panelGroup>
 
-		<p:outputLabel value="dadosPaciente"/>
+	
+
+		<!-- grid -->
+			<div class="ui-grid-row ui-grid-row-custom">
+				<div class="ui-grid-col-12">
+					<p:dataTable id="grid" var="paciente" 
+						emptyMessage="Nenhum paciente cadastrado." scrollHeight="157"
+						scrollable="true" resizableColumns="true"
+						value="#{beanPaciente.pacientes}"
+						paginator="#{beanPaciente.pacientes.size() > 10}" rows="13"
+						paginatorPosition="bottom" tabindex="-1"
+						
+						>
+
+						<f:facet name="header">
+							<p:outputLabel value="Pacientes" />
+						</f:facet>
+
+						<p:column headerText="Paciente" width="200px">
+							<h:outputText value="#{paciente.nome}" />
+						</p:column>
+
+						<p:column headerText="Convênio" width="50px">
+							<h:outputText value="#{paciente.convenio.convenio}" />
+						</p:column>
+						<ui:remove>
+							<p:column headerText="Ativo" style="width:10%;text-align: center;">
+								<p:graphicImage rendered="#{conv.flAtivo}">
+									<i class="fa fa-check-circle fa-2x fa-color-green" />
+								</p:graphicImage>
+								<p:graphicImage rendered="#{not conv.flAtivo}">
+									<i class="fa fa-times fa-2x fa-color-red" />
+								</p:graphicImage>
+							</p:column>
+						
+						<p:column style="width:15%;text-align: center;">
+							<p:commandButton
+								actionListener="#{beanConvenio.ativar(conv,true)}"
+								type="submit" value="Ativar" id="btnAtivar"
+								styleClass="btn btn-primary" rendered="#{not conv.flAtivo}"
+								title="Ativar esse serviço" ajax="true" process="@this"
+								update="grid" />
+							<p:commandButton
+								actionListener="#{beanConvenio.ativar(conv,false)}"
+								type="submit" value="Desativar" id="btInativar"
+								styleClass="btn btn-danger" title="Desativar convênio"
+								rendered="#{conv.flAtivo}" ajax="true" process="@this"
+								update="grid">
+								<p:confirm header="Desativar"
+									message="Você tem certeza que desativar esse convênio?"
+									icon="fa fa-exclamation-triangle" />
+							</p:commandButton>
+						</p:column>
+						</ui:remove>
+						<p:column headerText="Opções" style="text-align:center;width:20%">
+							<p:commandButton
+								actionListener="#{beanPaciente.selecionar(paciente)}" type="submit"
+								styleClass="btn btn-info btn-lg" icon="fa fa-pencil-square-o"
+								title="Clique aqui para alterar alguma informação" ajax="true"
+								process="@this" update="@form">
+								<f:ajax render="@form" />
+							</p:commandButton>
+							<p:commandButton action="#{beanPaciente.deletar(paciente)}"
+								type="submit" styleClass="btn btn-danger btn-lg"
+								icon="fa fa-trash-o" title="Excluir o registro na grid"
+								ajax="true" process="@this" update="grid">
+								<f:ajax execute="@all" render="@form" />
+								<p:confirm header="Confirme a exclusão"
+									message="Você tem certeza que deseja excluir este registro?"
+									icon="fa fa-exclamation-triangle" />
+							</p:commandButton>
+						</p:column>
+
+
+					</p:dataTable>
+				</div>
+			</div>
 			
-			
-			
-			
-			
-	</div>
 	
 </ui:composition>
 </html>

@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+<ui:composition>
+	<!-- Page Content -->
+	<div class="container">
+
+
+
+		<p:panelGrid columns="2">
+			<h:panelGroup>
+
+				<p:photoCam widgetVar="pc" listener="#{beanPaciente.oncapture}"
+					update="visualizacao,pngVisual" style="height: 80px;width:80px;"/>
+				<p:commandButton type="button" value="Capturar"
+					onclick="PF('pc').capture()" />
+
+			</h:panelGroup>
+
+			<h:panelGroup id="pngVisual">
+				<div class="ui-upload-img" style="height: 215px;">
+					<h:graphicImage
+						style="width:100%;height:100%;display:#{beanPaciente.hasPhoto ? 'inline-block' : 'none'}"
+						stream="false" cache="false"
+						url="data:image/jpg;base64,#{beanPaciente.paciente.foto}"
+						id="visualizacao" alt="Visualização da foto" />
+					<span
+						style="font-size: 58px; display: #{beanPaciente.hasPhoto? 'none': 'inline-block'}"
+						class="fa-stack fa-lg"> <i class="fa fa-camera fa-stack-1x"></i>
+						<i class="fa fa-ban fa-stack-2x text-danger"></i>
+					</span>
+				</div>
+			</h:panelGroup>
+
+		</p:panelGrid>
+
+
+
+
+
+	</div>
+
+</ui:composition>
+</html>

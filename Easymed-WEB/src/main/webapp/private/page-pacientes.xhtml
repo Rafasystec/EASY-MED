@@ -16,7 +16,7 @@
 	<ui:param name="pageTitle" value="PACIENTES" />
 
 	<ui:define name="header">
-
+		<clx:buttonsCrud id="btnsUp" bean="#{beanPaciente}" renderEncluir="false" />
 	</ui:define>
 
 	<ui:define name="body">
@@ -27,9 +27,9 @@
 					
 					<p:tabView>
 						<!-- Tab para os lancamentos de despesas -->
-						<ui:remove>
-						<p:ajax event="tabChange" listener="#{beanContaLancamentos.onTabChange}"/>
-						</ui:remove>
+						
+						<p:ajax event="tabChange" listener="#{beanPaciente.onTabChange}"/>
+						
 						<p:tab id="tabDadosGerais" title="DADOS GERAIS" closable="false" titletip="DADOS DO PACIENTE">
 							<ui:include src="content-tab-paciente-dadosgerais.xhtml" />
 						</p:tab>
@@ -41,9 +41,14 @@
 							<ui:include src="content-tab-paciente-observacoes.xhtml" />
 						</p:tab>
 						
-						<p:tab id="tabObs" title="PESQUISAS" closable="false" titletip="OBSERVAÇÕES DO PACIENTE">
+						<p:tab id="tabPesquisa" title="PESQUISAS" closable="false" titletip="OBSERVAÇÕES DO PACIENTE">
 							<ui:include src="content-tab-paciente-pesquisa.xhtml" />
 						</p:tab>
+						
+						<p:tab id="tabFoto" title="FOTO" closable="false" titletip="RETIRE UMA FOTO DO PACIENTE">
+							<ui:include src="content-tab-paciente-foto.xhtml" />
+						</p:tab>
+						
 						
 					</p:tabView>
 					

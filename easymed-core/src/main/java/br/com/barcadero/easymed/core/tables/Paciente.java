@@ -8,6 +8,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -18,9 +20,16 @@ import br.com.barcadero.easymed.core.enums.EnumRaca;
 import br.com.barcadero.easymed.core.enums.EnumSexo;
 import br.com.barcadero.easymed.core.enums.EnumUF;
 
+@NamedQueries({
+	@NamedQuery(name=Paciente.FIND_ALL_BY_USER,query="FROM Paciente WHERE usuario = :usuario")
+})
+
 @Entity
 @Table(name="T_PAC")
 public class Paciente extends EntidadeComUsuario {
+	
+	
+	public static final String FIND_ALL_BY_USER = "br.com.barcadero.easymed.core.tables.Paciente.findAllByUser";
 	
 	public Paciente() {
 	}
@@ -72,7 +81,8 @@ public class Paciente extends EntidadeComUsuario {
 	private Date dtUltimaConsulta = new Date();
 	@Column(name="DS_PAC_OBS",nullable=false,length=485760)
 	private String observacoes = "";
-	
+	@Column(name="ENDER_NUMERO",nullable=true,length=6)
+	private String enderecoNumero = "";
 	@Column(name="TP_PAC_ATV",nullable=false)
 	private boolean flAtivo = true;
 	@Column(name="DS_PAC_ANT_PES",nullable=false,length=255)
@@ -99,11 +109,6 @@ public class Paciente extends EntidadeComUsuario {
 	private String nomeAnterior = "";
 	@Column(name="EMAIL",nullable=false,length=60)
 	private String email = "";
-
-	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="IS_USU",referencedColumnName="CODIGO")
-	private Usuario usuario;
 	
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="IS_CNV",referencedColumnName="CODIGO")
@@ -349,14 +354,6 @@ public class Paciente extends EntidadeComUsuario {
 		this.nomeAnterior = nomeAnterior;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
 	public Convenio getConvenio() {
 		return convenio;
 	}
@@ -371,5 +368,11 @@ public class Paciente extends EntidadeComUsuario {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getEnderecoNumero() {
+		return enderecoNumero;
+	}
+	public void setEnderecoNumero(String enderecoNumero) {
+		this.enderecoNumero = enderecoNumero;
 	}
 }

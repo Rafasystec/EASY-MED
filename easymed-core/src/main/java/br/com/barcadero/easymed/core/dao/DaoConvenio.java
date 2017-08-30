@@ -14,11 +14,7 @@ public class DaoConvenio extends SuperClassDAO<Convenio> {
 
 	public DaoConvenio() {
 	}
-	@Override
-	public Convenio find(long codigo, Class<Convenio> type) throws NoResultException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public List<Convenio> findAll() throws NoResultException {

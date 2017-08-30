@@ -6,6 +6,5 @@ import javax.persistence.NoResultException;
 
 public interface IDao <T>{
 
-	public T find(long codigo, Class<T> type) throws NoResultException;
 	public List<T> findAll() throws NoResultException;
 }

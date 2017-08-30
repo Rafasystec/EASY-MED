@@ -34,6 +34,9 @@ public  abstract class SuperClassDAO<T extends Entidade>  implements IDao<T>{
 			
 	}
 
+	public T find(long codigo, Class<T> entidade) {
+		return manager.find(entidade, codigo);
+	}
 
 	public void delete(T entidade) {
 		manager.remove(manager.merge(entidade));

@@ -22,6 +22,7 @@
 			org.springframework.web.jsf.el.SpringBeanFacesELResolver
 		</el-resolver>
 	</application>
+	
 	 <navigation-rule>
 	 <from-view-id>*</from-view-id>
 		<navigation-case>

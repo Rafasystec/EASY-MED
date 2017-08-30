@@ -2,23 +2,129 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html">
-<ui:composition >
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:clx="http://java.sun.com/jsf/composite/components">
+<ui:composition>
 	<!-- Page Content -->
-	<div class="container">
+	
 
+	<div class="container">
 		
 
 		<p:panelGrid columns="2" styleClass="noBorder">
-			
-		
+			<p:outputLabel value="Nome:" for="txtNome" />
+			<p:inputText value="#{beanPaciente.paciente.nome}" size="60"
+				maxlength="80" id="txtNome"
+				required="#{beanPaciente.requiredDadosGerais}"
+				requiredMessage="Informe o NOME do paciente por favor" />
 		</p:panelGrid>
+		<p:panelGrid columns="4" styleClass="noBorder">
+
+
+
+			<p:outputLabel value="Apelido:" for="txtApelido" />
+			<p:inputText value="#{beanPaciente.paciente.pacienteApe}"
+				maxlength="10" id="txtApelido" />
+			<p:outputLabel value="Sexo:" for="cboSexo" />
+			<p:selectOneMenu value="#{beanPaciente.paciente.sexo}" id="cboSexo"
+				required="#{beanPaciente.requiredDadosGerais}"
+				requiredMessage="Informe o SEXO">
+				<f:selectItems value="#{beanPaciente.sexo}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="Estado Civil:" for="cboEstadoCivil" />
+			<p:selectOneMenu value="#{beanPaciente.paciente.estadoCivil}"
+				id="cboEstadoCivil" required="#{beanPaciente.requiredDadosGerais}"
+				requiredMessage="Informe o ESTADO CIVIL" style="width:100%">
+				<f:selectItems value="#{beanPaciente.estadoCivil}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="Nascimento:" for="txtDtNascimento" />
+
+			<p:calendar id="txtDtNascimento"
+				value="#{beanPaciente.paciente.dtNascimento}" pattern="dd/MM/yyyy"
+				maxlength="10" mask="true" title="Data de Nascimento" size="10"
+				required="#{beanPaciente.requiredDadosGerais}"
+				requiredMessage="Informe o A DATA DE NASCIMENTO por gentiliza" />
+
+			<p:outputLabel value="Convênio:" for="cboConvenio" />
+
+			<p:selectOneMenu id="cboConvenio" style="width:100%"
+				converter="#{convenioConverter}"
+				value="#{beanPaciente.paciente.convenio}"
+				required="#{beanPaciente.requiredPesquisa}"
+				requiredMessage="Informe o CONVÊNIO por gentiliza">
+
+				<f:selectItems value="#{beanPaciente.convenios}" var="convenio"
+					itemValue="#{convenio}" itemLabel="#{convenio.convenio}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="Matrícula:" for="txtMatricula" />
+			<p:inputText value="#{beanPaciente.paciente.matricula}"
+				maxlength="15" id="txtMatricula" />
+
 			
-			
-			
-			
-			
+		</p:panelGrid>
+		
+		
 	</div>
+	<p:separator />
+	<p:panel header="Contato">
+		<p:panelGrid columns="4" styleClass="noBorder">
+		
+			<p:outputLabel value="Tel. Residencial" for="txtResidencial" />
+			<p:inputText value="#{beanPaciente.paciente.telefone}"
+				maxlength="15" id="txtResidencial" />
+				
+				<p:outputLabel value="Tel. Comercial" for="txtComercial" />
+			<p:inputText value="#{beanPaciente.paciente.telComercial}"
+				maxlength="15" id="txtComercial" />
+				
+			<p:outputLabel value="Celular:" for="txtCelular" />
+			<p:inputText value="#{beanPaciente.paciente.celular}" required="#{beanPaciente.requiredDadosGerais}"
+				maxlength="15" id="txtCelular" />
+				
+			<p:outputLabel value="E-mail" for="txtEmail" />
+			<p:inputText value="#{beanPaciente.paciente.email}"
+				maxlength="60" id="txtEmail" />
+				
+			<p:outputLabel value="Raça:" for="cboRaca" />
+			<p:selectOneMenu value="#{beanPaciente.paciente.raca}" id="cboRaca" required="#{beanPaciente.requiredDadosGerais}"> 
+				<f:selectItems value="#{beanPaciente.raca}"/>
+			</p:selectOneMenu>
+			
+			<p:outputLabel value="Profissão" for="txtProfissao" />
+			<p:inputText value="#{beanPaciente.paciente.profissao}" required="#{beanPaciente.requiredDadosGerais}"
+				maxlength="60" id="txtProfissao" />
+		</p:panelGrid>
 	
+	</p:panel>
+	<p:separator />
+	<p:panel header="Endereço">
+	<p:panelGrid columns="4" styleClass="noBorder">
+		<p:outputLabel value="Endereço:" for="txtEndereco" />
+			<p:inputText value="#{beanPaciente.paciente.endereco}"
+				maxlength="60" id="txtEndereco" />
+		
+		<p:outputLabel value="Bairro" for="txtBairro" />
+			<p:inputText value="#{beanPaciente.paciente.bairro}"
+				maxlength="60" id="txtBairro" />
+			
+		<p:outputLabel value="Número" for="txtNumero" />
+			<p:inputText value="#{beanPaciente.paciente.enderecoNumero}"
+				maxlength="10" id="txtNumero" />
+				
+		<p:outputLabel value="Cidade:" for="txtCidade" />
+			<p:inputText value="#{beanPaciente.paciente.cidade}"
+				maxlength="40" id="txtCidade" />
+				
+		<p:outputLabel value="CEP:" for="txtCep" />
+			<p:inputText value="#{beanPaciente.paciente.cep}"
+				maxlength="10" id="txtCep" />	
+		
+		<p:outputLabel value="UF:" for="cboUf" />
+			<p:selectOneMenu value="#{beanPaciente.paciente.uf}" id="cboUf">
+				<f:selectItems value="#{beanPaciente.ufs}"/>
+			</p:selectOneMenu>	
+	</p:panelGrid>
+	</p:panel>
+
 </ui:composition>
 </html>
